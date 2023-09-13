@@ -1,0 +1,12 @@
+.app {
+  max-width: 1920px;
+  /* width: 100%; */
+  height: 100%;
+  margin: auto;
+  background: #f8f5f5;
+  font-family: Verdana, sans-serif;
+}
+.qty {
+  text-align: center;
+  padding: 20px;
+}
