@@ -13,6 +13,9 @@ class LoadMoreStore {
   decrementStartIndex = () => {
     this.startIndex = this.startIndex - 30;
   };
+  getInitialStartIndex = () => {
+    this.startIndex = 0;
+  };
 }
 const loadMoreStore = new LoadMoreStore();
 export default loadMoreStore;

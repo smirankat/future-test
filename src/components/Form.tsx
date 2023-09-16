@@ -3,17 +3,20 @@ import { useState } from "react";
 import booksStore from "../store/books-store";
 import formStore from "../store/form-store";
 import styles from "./Form.module.css";
+import loadMoreStore from "../store/loadMore-store";
 
 const SearchForm = observer(() => {
   const [value, setValue] = useState("");
   const { getBooksAction, getTotalItemsAction } = booksStore;
   const { setSearchValue, setOrderBy, categories, setCategory } = formStore;
+  const { getInitialStartIndex } = loadMoreStore;
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setValue(e.target.value);
   };
   const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
+    getInitialStartIndex();
     setSearchValue(value);
     getBooksAction();
     getTotalItemsAction();
@@ -21,6 +24,7 @@ const SearchForm = observer(() => {
   const handleKeyPress: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
+      getInitialStartIndex();
       setSearchValue(value);
       getBooksAction();
       getTotalItemsAction();

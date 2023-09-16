@@ -6,15 +6,7 @@ import { getBooks, getTotalItems } from "../api/getBooks";
 class BooksStore {
   books?: IPromiseBasedObservable<Book[]>;
   totalItems?: IPromiseBasedObservable<number>;
-  // categories: String[] = [
-  //   "Art",
-  //   "Biography",
-  //   "Computers",
-  //   "History",
-  //   "Medical",
-  //   "Poetry",
-  // ];
-  // category?: string;
+  allBooks: Book[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -22,6 +14,11 @@ class BooksStore {
 
   getBooksAction = () => {
     this.books = fromPromise(getBooks());
+    // this.books.then(() => {
+    //   const booksArray = this.books?.value as any[];
+    //   this.allBooks = this.allBooks.concat(booksArray);
+    //   console.log(this.allBooks);
+    // });
   };
   getTotalItemsAction = () => {
     this.totalItems = fromPromise(getTotalItems());
